@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: block;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        h2 {
+            text-align: center;
+            color: {{ color }};
+        }
+        .correct {
+            color: green;
+        }
+
+        .wrong {
+            color: red;
+        }
+        h4 {
+            font-size: 48px;
+            text-align: center;
+            color: yellow;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <h1>This game was based on <a href="https://literalnie.fun/slownikowo">Słownikowo</a></h1>
+    <div>
+        <h3>words greater than guessing:</h3>
+        <ul>
+            {% for word in table_up %}
+                <li>{{ word }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <form method="POST" action="/">
+        <label for="word">Your word:</label>
+        <input type="text" id="word" name="word" maxlength="5" required {{ readonly }}>
+        <button type="submit">Check</button>
+    </form>
+    <div>
+        <h3>words smaller than guessing:</h3>
+        <ul>
+            {% for word in table_down %}
+                <li>{{ word }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if word %}
+        <h2>{{ word }}</h2>
+    {% endif %}
+    <div>
+        <h4> {{ letters }} </h4>
+    </div>
+</body>
+</html>
