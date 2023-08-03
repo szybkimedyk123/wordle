@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            font-size: 28px;
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: inline;
+        }
+        .visible {
+            display: block;
+        }
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>This game was based on <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a></h1>
+    <div>
+        <h3>Your guesses:</h3>
+        <ul class="{{ hidden1 }}">
+            {% for key, data in word_1.items() %}
+                <li style="color: {{ data['color'] }}">{{ data['letter'] }}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{{ hidden2 }}">
+            {% for key, data in word_2.items() %}
+                <li style="color: {{ data['color'] }}">{{ data['letter'] }}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{{ hidden3 }}">
+            {% for key, data in word_3.items() %}
+                <li style="color: {{ data['color'] }}">{{ data['letter'] }}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{{ hidden4 }}">
+            {% for key, data in word_4.items() %}
+               <li style="color: {{ data['color'] }}">{{ data['letter'] }}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{{ hidden5 }}">
+            {% for key, data in word_5.items() %}
+               <li style="color: {{ data['color'] }}">{{ data['letter'] }}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{{ hidden6 }}">
+            {% for key, data in word_6.items() %}
+                <li style="color: {{ data['color'] }}">{{ data['letter'] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <form method="POST" action="/">
+        <label for="word">Your word:</label>
+        <input type="text" id="word" name="word" maxlength="5" required {{ readonly }}>
+        <button type="submit">Check</button>
+    </form>
+    {% if word %}
+        <h2>{{ word }}</h2>
+    {% endif %}
+    <ul>
+        {% for letter, color in alphabet.items() %}
+            <li style="color: {{ color }};">{{ letter }}</li>
+        {% endfor %}
+    </ul>
+    <ul class="{{ hidden7 }}">
+        <li style="color: red"> {{ status }}</li>
+    </ul>
+</body>
+</html>
